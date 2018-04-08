@@ -1,5 +1,5 @@
 const electron = require('electron')
-const { createRoutes } = require('./config/routes')
+const { createChannels } = require('./config/channels')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const ipc = electron.ipcMain
@@ -41,4 +41,4 @@ app.on('activate', function () {
   }
 })
 
-createRoutes(ipc)
+createChannels(ipc)

@@ -4,7 +4,7 @@ const ipc = electron.ipcRenderer
 
 const newProjectForm = document.getElementById('newProject')
 
-newProjectForm.onsubmit = (event) => {
+newProjectForm.onsubmit = (_event) => {
   rails.request.sendForm(ipc, 'POST /projects', newProjectForm)
 }
 
