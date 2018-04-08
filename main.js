@@ -1,5 +1,5 @@
 const electron = require('electron')
-const { createRoutes } = require('./routes')
+const { createRoutes } = require('./config/routes')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const ipc = electron.ipcMain
@@ -15,7 +15,7 @@ function createWindow() {
   mainWindow.maximize()
 
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, 'views', 'index.html'),
     protocol: 'file:',
     slashes: true
   }))
