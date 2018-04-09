@@ -1,9 +1,9 @@
 const { projectsController } = require('../controllers')
-const rails = require('../lib/rails')
+const { newChannel } = require('../lib/rails').channels
 
 module.exports = {
   createChannels: (ipc) => {
-    rails.newChannel(ipc, 'GET /projects', projectsController.index)
-    rails.newChannel(ipc, 'POST /projects', projectsController.create)
+    newChannel(ipc, 'GET /projects', projectsController.index)
+    newChannel(ipc, 'POST /projects', projectsController.create)
   }
 }
