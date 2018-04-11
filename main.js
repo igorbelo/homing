@@ -1,16 +1,15 @@
 const electron = require('electron')
 const { createChannels } = require('./config/channels')
-const app = electron.app
+const app = require('./application')
 const BrowserWindow = electron.BrowserWindow
 const ipc = electron.ipcMain
-const dialog = electron.dialog
 
 const path = require('path')
 const url = require('url')
 
 let mainWindow
 
-function createWindow() {
+const createWindow = () => {
   mainWindow = new BrowserWindow({show: false})
   mainWindow.maximize()
 
@@ -27,15 +26,15 @@ function createWindow() {
   })
 }
 
-app.on('ready', createWindow)
+app.electron.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
+app.electron.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.electron.quit()
   }
 })
 
-app.on('activate', function () {
+app.electron.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }

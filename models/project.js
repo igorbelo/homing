@@ -1,9 +1,9 @@
-const storage = require('../config/storage')
+const app = require('../application')
 
 class Project {
   static all(options = {}) {
     // storage.set('projects-list', [{id: 1}, {id: 50}])
-    return storage.get('projects-list')
+    return app.storage.get('projects-list')
   }
 }
 
