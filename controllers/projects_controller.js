@@ -2,13 +2,19 @@ const { Project } = require('../models')
 
 class ProjectsController {
   index(event, data) {
-    const result = {channel: '200 GET /projects', data: Project.all()}
-    event.sender.webContents.send(result.channel, JSON.stringify(result.data))
+    event.sender.webContents.send(
+      '200 GET /projects',
+      Project.all()
+    )
   }
 
   create(event, data) {
-    const result = {channel: '200 POST /projects', data: {}}
-    event.sender.webContents.send(result.channel, JSON.stringify(result.data))
+    const project = new Project(data)
+    project.save()
+    event.sender.webContents.send(
+      '200 POST /projects',
+      {}
+    )
   }
 }
 
