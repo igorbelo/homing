@@ -7,7 +7,7 @@ const url = require('url')
 const rails = require('../lib/rails')
 
 const openNewProjectWindow = () => {
-  let modalWindow = new BrowserWindow({width: 500, height: 300, title: 'New Project', parent: remote.getCurrentWindow(), modal: true})
+  let modalWindow = new BrowserWindow({width: 500, height: 300, title: 'New Project', parent: remote.getCurrentWindow()})
 
   modalWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'new_project.html'),
@@ -16,7 +16,7 @@ const openNewProjectWindow = () => {
   }))
   modalWindow.webContents.openDevTools()
 
-  modalWindow.on('closed', function () {
+  modalWindow.on('closed', () => {
     modalWindow = null
   })
 }
@@ -30,12 +30,12 @@ rails.response.handle(ipc, '200 GET /projects', (_event, data) => {
   const projectsList = jQuery("#projects-list")
   projectsList.html('')
   data.forEach((project) => {
-    projectsList.append("<li>"+project.attributes['title']+"</li>")
+    projectsList.append('<li class="nav-item"><a class="nav-link" href="#">'+project.attributes['title']+'</a></li>')
   })
 })
 
 ipc.on('flash-message', (event, message) => {
-  document.getElementById('flash-message').innerHTML = message
+  jQuery('#flash-message').html(message)
 })
 
 ipc.on('project-created', (_event, _data) => {

@@ -8,11 +8,28 @@
     <title>Homing</title>
   </head>
   <body>
-    <div id="flash-message"></div>
-    <h3>Projects</h3>
-    <button id="newProject" class="btn-sm btn-success">+</button>
-    <ul id="projects-list">
-    </ul>
+    <div class="container-fluid">
+      <div id="flash-message"></div>
+      <div class="row">
+        <nav class="col-sm-2 col-md-2 hidden-xs-down bg-faded sidebar">
+          <div class="row">
+            <div class="col-6">
+              <h4>Projects</h4>
+            </div>
+            <div class="col-6">
+              <button id="newProject" class="btn btn-xs btn-success" style="float: right; min-width: 30px;">New</button>
+              <button id="importProject" class="btn btn-xs btn-primary" style="float: right; min-width: 40px; margin-right: 5px;">Import</button>
+            </div>
+          </div>
+          <ul id="projects-list" class="nav nav-pills flex-column">
+          </ul>
+        </nav>
+
+        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
+          Alo
+        </main>
+      </div>
+    </div>
     <script>
       require('./index.js')
     </script>
