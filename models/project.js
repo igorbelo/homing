@@ -10,7 +10,15 @@ class Project {
   }
 
   static deleteAll(options = {}) {
-    app.storage.delete('projects-list')
+    if (!options.filter) {
+      app.storage.set('projects-list', [])
+    }
+    else {
+      const projects = app.storage.get('projects-list')
+      const deletedProjects = projects.filter(options.filter)
+
+      app.storage.set('projects-list', projects.filter(p => !deletedProjects.includes(p)))
+    }
   }
 
   save() {
