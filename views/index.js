@@ -25,12 +25,16 @@ jQuery('#newProject').on('click', (e) => {
   openNewProjectWindow()
 })
 
+jQuery(document).on('click', '.nav-link', (e) => {
+  ipc.send('open-window', {file: 'show_project.html', params: {id: jQuery(e.target).data('id')}})
+})
+
 rails.request.send(ipc, 'GET /projects')
 rails.response.handle(ipc, '200 GET /projects', (_event, data) => {
   const projectsList = jQuery("#projects-list")
   projectsList.html('')
   data.forEach((project) => {
-    projectsList.append('<li class="nav-item"><a class="nav-link" href="#">'+project.attributes['title']+'</a></li>')
+    projectsList.append('<li class="nav-item"><a class="nav-link" href="#" data-id="'+project.attributes['_id']+'">'+project.attributes['title']+'</a></li>')
   })
 })
 

@@ -1,4 +1,5 @@
 const app = require('../application')
+const md5 = require('md5')
 
 class Project {
   constructor(attributes = {}) {
@@ -25,6 +26,8 @@ class Project {
     if (!this.isValid()) {
       return false
     }
+
+    this.attributes['_id'] = md5(new Date() + this.attributes['title'])
 
     app.storage.append('projects-list', this.attributes)
     return true

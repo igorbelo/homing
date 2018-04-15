@@ -40,4 +40,13 @@ app.electron.on('activate', function () {
   }
 })
 
+ipc.on('open-window', (_event, data) => {
+  mainWindow.params = data.params
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'views', data.file),
+    protocol: 'file:',
+    slashes: true
+  }))
+})
+
 createChannels(ipc)
