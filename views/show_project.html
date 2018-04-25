@@ -13,19 +13,24 @@
       <div class="row">
         <nav class="col-sm-2 col-md-2 hidden-xs-down bg-faded sidebar">
           <div class="row">
-            <div class="col-6">
-              <h4>Projects</h4>
-            </div>
-            <div class="col-6">
-              <button id="newProject" class="btn btn-xs btn-success" style="float: right; min-width: 30px;">New</button>
+            <div class="col-12">
+              <a id="goBack" href="#">< Back</a>
+              <h4>Requests</h4>
             </div>
           </div>
-          <ul id="projects-list" class="nav nav-pills flex-column">
+          <ul id="requests-list" class="nav nav-pills flex-column">
           </ul>
         </nav>
 
         <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
-
+          <div class="row">
+            <div class="col-2">
+              <button id="editProject" class="btn btn-xs btn-warning" style="min-width: 30px;">Edit</button>
+              <button id="deleteProject" class="btn btn-xs btn-danger" style="min-width: 30px;">Delete</button>
+            </div>
+          </div>
+          <h1></h1>
+          <span id="description"></span>
         </main>
       </div>
     </div>

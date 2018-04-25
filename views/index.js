@@ -14,7 +14,7 @@ const openNewProjectWindow = () => {
     protocol: 'file:',
     slashes: true
   }))
-  modalWindow.webContents.openDevTools()
+  // modalWindow.webContents.openDevTools()
 
   modalWindow.on('closed', () => {
     modalWindow = null

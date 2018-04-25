@@ -22,14 +22,33 @@ class Project {
     }
   }
 
-  save() {
+  static find(id) {
+    const attributes = app.storage.get('projects-list').find(p => p['_id'] == id)
+    return new Project(attributes)
+  }
+
+  save(replacements = false) {
     if (!this.isValid()) {
       return false
     }
 
-    this.attributes['_id'] = md5(new Date() + this.attributes['title'])
+    if (!replacements) {
+      this.attributes['_id'] = md5(new Date() + this.attributes['title'])
+      app.storage.append('projects-list', this.attributes)
+    }
+    else {
+      const projects = Project.all()
+      const modifiedProjects = projects.map((project) => {
+        if (project.attributes['_id'] == replacements['_id']) {
+          return replacements
+        }
+        else {
+          return project.attributes
+        }
+      })
+      app.storage.set('projects-list', modifiedProjects)
+    }
 
-    app.storage.append('projects-list', this.attributes)
     return true
   }
 

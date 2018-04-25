@@ -18,7 +18,7 @@ const createWindow = () => {
     protocol: 'file:',
     slashes: true
   }))
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
   mainWindow.show()
 
   mainWindow.on('closed', function () {
